@@ -1,0 +1,395 @@
+LoadImage("std6txt", "images/std6txt.png")
+LoadImage("stg6bg", "images/stg6bg.png")
+LoadImage("stg6bg2", "images/stg6bg2.png")
+LoadImage("front", "images/front.png")
+LoadImage("pcb", "images/pcb.png")
+LoadImage("logo2", "images/logo2.png")
+LoadImage("ui_bg", "images/menu_bg.png")
+
+NewQuadGroupBatch("stg6bg", "stg6bg", {
+	{0,0,512,256,"sakura"}, {0,256,256,256,"fog"}, {257,257,256,256,"circle"}
+})
+NewQuadGroupBatch("std6txt", "std6txt", {
+	{0,0,256,48,"logo"}, {0,128,128,128,"logobg"}, {129,128,128,64,"logo2"},
+	{256,0,256,48,"text"}
+})
+
+    task.New("main", function ()
+		New(th_ui, function ()
+			last.image = "front"
+			last.layer = LAYER_UI - 8
+		end)
+		task._wait(60)
+		local bga = {0}
+		New(th_object, function ()
+			last.image = "stg6bg2"
+			last.x = 270
+			last.color.a = 0
+			last.layer = LAYER_BACKGROUND + 10
+			last.sx = 1.3
+			last.sy = 1.3
+			task.New("", function ()
+				local self = last
+				while bga[1] ~= 0.5 do
+					self.color = Color(1,1,1,bga[1]*2)
+					coroutine.yield()
+				end
+			end)
+		end)
+		task._wait(2)
+		task.New("", function ()
+			local a = 0
+			while true do
+				New(th_object, function ()
+					last.ox = 256
+					last.oy = 128
+					--last.vy = 240
+					last.x = 512
+					last.y = -128
+					last.layer = LAYER_BACKGROUND
+					last.image = "stg6bg"
+					last.quadGroup = "stg6bg"
+					last.quad = "sakura"
+					last.color = Color(1,1,1,0)
+					last.bgr = false
+					task.New("", function ()
+						local self = last
+						while self.y <= 704 do
+							coroutine.yield()
+						end
+						self:Delete()
+					end)
+					task.New("", function ()
+						local self = last
+						while self.isUsing do
+							self.y = self.y + 2
+							coroutine.yield()
+						end
+					end)
+					task.New("", function ()
+						local self = last
+						while bga[1] ~= 0.5 do
+							self.color = Color(1,1,1,bga[1])
+							coroutine.yield()
+						end
+					end)
+				end)
+				task._wait(128)
+			end
+		end)
+		task._wait(2)
+		task.New("", function ()
+			local a = 0
+			while true do
+				New(th_object, function ()
+					last.ox = 256
+					last.oy = 128
+					--last.vy = 240
+					last.x = 512
+					last.y = -192
+					last.layer = LAYER_BACKGROUND
+					last.image = "stg6bg"
+					last.quadGroup = "stg6bg"
+					last.quad = "sakura"
+					last.color = Color(1,1,1,0)
+					last.sx = 2
+					last.sy = 1.5
+					last.bgr = false
+					task.New("", function ()
+						local self = last
+						while self.y <= 1056 do
+							coroutine.yield()
+						end
+						self:Delete()
+					end)
+					task.New("", function ()
+						local self = last
+						while self.isUsing do
+							self.y = self.y + 4
+							coroutine.yield()
+						end
+					end)
+					task.New("", function ()
+						local self = last
+						while bga[1] ~= 0.5 do
+							self.color = Color(1,1,1,bga[1]*2)
+							coroutine.yield()
+						end
+					end)
+				end)
+				task._wait(96)
+			end
+		end)
+		task._wait(2)
+
+		New(th_ui, function ()
+			last.ofx = 100
+			last.ofy = 10
+			last.align = "center-left"
+			last.color = Color(1,1,1,0)
+			last.image = "logo2"
+			last.layer = LAYER_UI - 9
+			task.New("", function ()
+				local self = last
+				coroutine.yield()
+				local as = self.color.a
+				local da = 100 - self.color.a
+				for s = 1/60, 1+0.5/60, 1/60 do
+					self.color.a = (as + s * da) * 0.01
+					coroutine.yield()
+				end
+			end)
+			task.New("", function ()
+				local self = last
+				task._moveToEx(self, 40, 0, 60, 1, true)
+			end)
+		end)
+		task._wait(60)
+
+		New(th_ui, function ()
+			last.ofx = 100
+			last.ofy = 120
+			last.align = "center-left"
+			last.color = Color(1,1,1,0)
+			last.image = "pcb"
+			last.layer = LAYER_UI - 9
+			task.New("", function ()
+				local self = last
+				local as = self.color.a
+				local da = 100 - self.color.a
+				for s = 1/60, 1+0.5/60, 1/60 do
+					self.color.a = (as + s * da) * 0.01
+					coroutine.yield()
+				end
+			end)
+			task.New("", function ()
+				local self = last
+				task._moveToEx(self, -20, 0, 60, 1, true)
+			end)
+		end)
+		task._wait(5)
+
+		New(th_object, function ()
+			last.image = "stg6bg"
+			last.quadGroup = "stg6bg"
+			last.quad = "circle"
+			last.layer = LAYER_BACKGROUND
+			last.ox = image.stg6bg:getWidth()/4
+			last.oy = image.stg6bg:getHeight()/4
+			last.x = 512
+			last.y = 280
+			last.sx = 1.8
+			last.sy = 1.8
+			last.color = Color(1,1,1,0)
+			last.layer = LAYER_BACKGROUND - 1
+			task.New("", function ()
+				local self = last
+				while true do
+					self.rot = self.rot + 0.025
+					if self.rot >= 6.28 then
+						self.rot = 0
+					end
+					coroutine.yield()
+				end
+			end)
+			task.New("", function ()
+				local self = last
+				coroutine.yield()
+				local as = self.color.a
+				local da = 100 - self.color.a
+				for s = 1 / 150, 1 + 0.5 / 150, 1 / 150 do
+					self.color.a = (as + s * da) * 0.01
+					coroutine.yield()
+				end
+				task._wait(310)
+				for s = 100, 50, -1 do
+					self.color.a = s * 0.01
+					coroutine.yield()
+				end
+			end)
+			task.New("", function ()
+				local self = last
+				local dx = 1.3 - self.sx
+				local dy = 1.3 - self.sy
+				local xs = self.sx
+				local ys = self.sy
+				for s = 1 / 300, 1 + 0.5 / 300, 1 / 300 do
+					s = s * 2 - s * s
+					self.sx = xs + s * dx
+					self.sy = ys + s * dy
+					coroutine.yield()
+				end
+				while true do
+					task._wait(120)
+					dx = 1.8 - self.sx
+					dy = 1.8 - self.sy
+					xs = self.sx
+					ys = self.sy
+					for s = 1 / 260, 1 + 0.5 / 260, 1 / 260 do
+						if s < 0.5 then
+							s = s * s * 2
+						else
+							s = -2 * s * s + 4 * s - 1
+						end
+						self.sx = xs + s * dx
+						self.sy = ys + s * dy
+						coroutine.yield()
+					end
+					task._wait(120)
+					dx = 1.3 - self.sx
+					dy = 1.3 - self.sy
+					xs = self.sx
+					ys = self.sy
+					for s = 1 / 260, 1 + 0.5 / 260, 1 / 260 do
+						if s < 0.5 then
+							s = s * s * 2
+						else
+							s = -2 * s * s + 4 * s - 1
+						end
+						self.sx = xs + s * dx
+						self.sy = ys + s * dy
+						coroutine.yield()
+					end
+				end
+			end)
+			task.New("", function ()
+				local self = last
+				task._moveToEx(self, 0, -80, 300, 3, false)
+			end)
+		end)
+		task._wait(180)
+
+		New(th_ui, function ()
+			last.ox = 64
+			last.oy = 64
+			last.align = "center"
+			last.color = Color(1,1,1,0)
+			last.image = "std6txt"
+			last.quadGroup = "std6txt"
+			last.quad = "logobg"
+			last.layer = LAYER_UI
+			task.New("", function ()
+				local self = last
+				coroutine.yield()
+				local as = self.color.a
+				local da = 100 - self.color.a
+				for s = 1 / 120, 1 + 0.5 / 120, 1 / 120 do
+					self.color.a = (as + s * da) * 0.01
+					coroutine.yield()
+				end
+				task._wait(410)
+				for s = 100, 0, -1 do
+					self.color.a = s * 0.01
+					coroutine.yield()
+				end
+				self:Delete()
+			end)
+		end)
+		task._wait(180)
+		task.New("", function ()
+			PlayMusic("th07_12")
+			local as = bga[1]
+			local da = 50 - bga[1]
+			for s = 1 / 40, 1 + 0.5 / 40, 1 / 40 do
+				bga[1] = (as + s * da) * 0.01
+				coroutine.yield()
+			end
+		end)
+		task._wait(60)
+
+		New(th_ui, function ()
+			last.ox = 128
+			last.oy = 24
+			last.rot = AngToRad(90)
+			last.align = "center"
+			last.color = Color(1,1,1,0)
+			last.image = "std6txt"
+			last.quadGroup = "std6txt"
+			last.quad = "logo"
+			last.layer = LAYER_UI - 1
+			task.New("", function ()
+				local self = last
+				coroutine.yield()
+				local as = self.color.a
+				local da = 100 - self.color.a
+				for s = 1 / 120, 1 + 0.5 / 120, 1 / 120 do
+					self.color.a = (as + s * da) * 0.01
+					coroutine.yield()
+				end
+				task._wait(260)
+				for s = 100, 0, -1 do
+					self.color.a = s * 0.01
+					coroutine.yield()
+				end
+				self:Delete()
+			end)
+		end)
+		task._wait(60)
+
+		New(th_ui, function ()
+			last.ox = 64
+			last.oy = 32
+			last.ofx = -150
+			last.ofy = -65
+			last.align = "center"
+			last.color = Color(1,1,1,0)
+			last.image = "std6txt"
+			last.quadGroup = "std6txt"
+			last.quad = "logo2"
+			last.layer = LAYER_UI - 1
+			task.New("", function ()
+				local self = last
+				coroutine.yield()
+				local as = self.color.a
+				local da = 100 - self.color.a
+				for s = 1 / 60, 1 + 0.5 / 60, 1 / 60 do
+					self.color.a = (as + s * da) * 0.01
+					coroutine.yield()
+				end
+				task._wait(210)
+				for s = 100, 0, -1 do
+					self.color.a = s * 0.01
+					coroutine.yield()
+				end
+				self:Delete()
+			end)
+			task.New("", function ()
+				local self = last
+				task._moveToEx(self, 50, 0, 180, 1, true)
+			end)
+		end)
+		task._wait(2)
+
+		New(th_ui, function ()
+			last.ox = 128
+			last.oy = 24
+			last.ofx = 150
+			last.ofy = 65
+			last.align = "center"
+			last.color = Color(1,1,1,0)
+			last.image = "std6txt"
+			last.quadGroup = "std6txt"
+			last.quad = "text"
+			last.layer = LAYER_UI
+			task.New("", function ()
+				local self = last
+				coroutine.yield()
+				local as = self.color.a
+				local da = 100 - self.color.a
+				for s = 1 / 60, 1 + 0.5 / 60, 1 / 60 do
+					self.color.a = (as + s * da) * 0.01
+					coroutine.yield()
+				end
+				task._wait(380)
+				for s = 100, 0, -1 do
+					self.color.a = s * 0.01
+					coroutine.yield()
+				end
+				self:Delete()
+			end)
+			task.New("", function ()
+				local self = last
+				task._moveToEx(self, -50, 0, 180, 1, true)
+			end)
+		end)
+	end)

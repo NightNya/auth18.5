@@ -1,0 +1,1 @@
+LoadMusic("th07_12", "assets/music/th07_12.mp3")

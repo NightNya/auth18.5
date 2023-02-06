@@ -1,0 +1,1 @@
+LoadFont("twcen_ui", "assets/font/bmfont/twcen_ui.fnt")
