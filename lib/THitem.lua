@@ -54,11 +54,6 @@ end
 
 function th_item:frame()
 	if player[1] and CircleCheck(self, player[1].x, player[1].y, 40) then
-		if playerAction.isSlow then
-			
-		elseif CircleCheck(self, player[1].x, player[1].y, 30) then
-
-		end
 		if CircleCheck(self, player[1].x, player[1].y, 10) then
 			if self.type == "power" then
 				playerAction.power = playerAction.power + 1
