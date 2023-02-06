@@ -40,7 +40,6 @@ function th_item.New(_type, num, x, y, width, height)
 			else
 				self.x = x
 				self.y = y
-				thlog("w")
 			end
 			self._a = 0
 			task.New(function ()
