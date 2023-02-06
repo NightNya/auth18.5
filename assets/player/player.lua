@@ -172,13 +172,13 @@ end, function(self) -- shot
 			self2.oy = 8
 			self2.rot = AngToRad(-90)
 			self2._a = 0.3
-			task.New(function()
-				while self2.y > 0 do
+			self2.frame = function ()
+				if self2.y > 0 then
 					self2.y = self2.y - 35
-					coroutine.yield()
+				else
+					self2:Delete()
 				end
-				self2:Delete()
-			end)
+			end
 		end)
 	end
 end, function(self) -- bomb
