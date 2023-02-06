@@ -3,6 +3,15 @@ th_item = Class("th_item", th_object)
 
 ---@alias th_item.type "power"|"point"|"lives"|"bomb"|"full"|"power_big"|"bomb_big"|"lives_big"|"small_point_0"|"small_point_1"|"small_point_2"
 
+local item = {
+	collect = 20,
+	line = FRONT_Y + 130,
+	speed = 1.5,
+	delete = 10,
+	collectSpeed = 5,
+	lineCollectSpeed = 12,
+}
+
 ---comment
 ---@param _type th_item.type
 ---@param cb_new function
@@ -53,18 +62,28 @@ function th_item.New(_type, num, x, y, width, height)
 end
 
 function th_item:frame()
-	if player[1] and CircleCheck(self, player[1].x, player[1].y, 40) then
-		if CircleCheck(self, player[1].x, player[1].y, 10) then
+	if player[1].y < item.line then
+		if CircleCheck(self, player[1].x, player[1].y, item.delete) then
 			if self.type == "power" then
 				playerAction.power = playerAction.power + 1
 			end
 			self:Kill()
 		else
-			self.x = math.cos(math.atan2(player[1].y-self.y, player[1].x-self.x)) * 7 + self.x
-			self.y = math.sin(math.atan2(player[1].y-self.y, player[1].x-self.x)) * 7 + self.y
+			self.x = math.cos(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.lineCollectSpeed + self.x
+			self.y = math.sin(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.lineCollectSpeed + self.y
+		end
+	elseif player[1] and CircleCheck(self, player[1].x, player[1].y, item.collect) then
+		if CircleCheck(self, player[1].x, player[1].y, item.delete) then
+			if self.type == "power" then
+				playerAction.power = playerAction.power + 1
+			end
+			self:Kill()
+		else
+			self.x = math.cos(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.collectSpeed + self.x
+			self.y = math.sin(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.collectSpeed + self.y
 		end
 	elseif self.y < SCREEN_ORIGIN_HEIGHT then
-		self.y = self.y + 1.5
+		self.y = self.y + item.speed
 	else
 		self:Delete()
 	end

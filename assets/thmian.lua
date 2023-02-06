@@ -48,7 +48,10 @@ function UpdateWorld()
 		ui.DrawUI("title")
 	elseif playerAction.stage.name == "1" then
 		New(th_player, "reimu")
-		th_item.New("power", 40, FRONT_X,FRONT_Y,150+FRONT_X,150+FRONT_Y)
 		ui.DrawUI("game")
+		for i = 1, 5 do
+			th_item.New("power", 40, FRONT_X,FRONT_Y,200+FRONT_X,150+FRONT_Y)
+			task._wait(30)
+		end
 	end
 end
