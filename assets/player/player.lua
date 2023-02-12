@@ -1,6 +1,6 @@
-LoadImage("pl00", "assets/player/reimu/pl00.png")
-LoadImage("pl00b", "assets/player/reimu/pl00b.png")
-LoadImage("pslow", "assets/player/eff_sloweffect.png")
+th_image.LoadImage("pl00", "assets/player/reimu/pl00.png")
+th_image.LoadImage("pl00b", "assets/player/reimu/pl00b.png")
+th_image.LoadImage("pslow", "assets/player/eff_sloweffect.png")
 
 NewQuadGroupBatch("pslow", "pslow", {
 	{0,0,64,64,1}, {64,0,64,64,2}

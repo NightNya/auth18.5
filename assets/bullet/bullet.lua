@@ -1,7 +1,7 @@
-LoadImage("bulletMap-1", "assets/bullet/bullet1.png")
-LoadImage("bulletMap-2", "assets/bullet/bullet2.png")
-LoadImage("bulletMap-3", "assets/bullet/bullet3.png")
-LoadImage("etbreak", "assets/bullet/etbreak.png")
+th_image.LoadImage("bulletMap-1", "assets/bullet/bullet1.png")
+th_image.LoadImage("bulletMap-2", "assets/bullet/bullet2.png")
+th_image.LoadImage("bulletMap-3", "assets/bullet/bullet3.png")
+th_image.LoadImage("etbreak", "assets/bullet/etbreak.png")
 NewQuadGroupBatch("bulletMap-1", "bulletMap-1", {
     {224,0,16,16,"scale_black"}, {224,16,16,16,"scale_deepRed"}, {224,32,16,16,"scale_red"},
     {224,48,16,16,"scale_purple"}, {224,64,16,16,"scale_pink"}, {224,80,16,16,"scale_deepBlue"},

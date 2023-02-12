@@ -1,16 +1,16 @@
 ui = {}
 
-LoadImage("board", "assets/ui/board.png")
+th_image.LoadImage("board", "assets/ui/board.png")
 
-LoadImage("title_logo", "assets/ui/logo.png")
-LoadImage("title_circle", "assets/ui/titlecircle.png")
-LoadImage("title_bg", "assets/ui/title_background.png")
-LoadImage("title_option", "assets/ui/titleopt.png")
-LoadImage("title_diffSele", "assets/ui/diffcultySelect.png")
-LoadImage("title_diffculty", "assets/ui/diffculty.png")
+th_image.LoadImage("title_logo", "assets/ui/logo.png")
+th_image.LoadImage("title_circle", "assets/ui/titlecircle.png")
+th_image.LoadImage("title_bg", "assets/ui/title_background.png")
+th_image.LoadImage("title_option", "assets/ui/titleopt.png")
+th_image.LoadImage("title_diffSele", "assets/ui/diffcultySelect.png")
+th_image.LoadImage("title_diffculty", "assets/ui/diffculty.png")
 
-LoadImage("game_front", "assets/ui/game_front.png")
-LoadImage("game_logo", "assets/ui/logo2.png")
+th_image.LoadImage("game_front", "assets/ui/game_front.png")
+th_image.LoadImage("game_logo", "assets/ui/logo2.png")
 
 NewQuadGroupY("title_option", "title_option", 10)
 NewQuadGroupX("title_diffculty", "title_diffculty", 5)

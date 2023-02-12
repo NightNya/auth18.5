@@ -1,10 +1,10 @@
-LoadImage("std6txt", "images/std6txt.png")
-LoadImage("stg6bg", "images/stg6bg.png")
-LoadImage("stg6bg2", "images/stg6bg2.png")
-LoadImage("front", "images/front.png")
-LoadImage("pcb", "images/pcb.png")
-LoadImage("logo2", "images/logo2.png")
-LoadImage("ui_bg", "images/menu_bg.png")
+th_image.LoadImage("std6txt", "images/std6txt.png")
+th_image.LoadImage("stg6bg", "images/stg6bg.png")
+th_image.LoadImage("stg6bg2", "images/stg6bg2.png")
+th_image.LoadImage("front", "images/front.png")
+th_image.LoadImage("pcb", "images/pcb.png")
+th_image.LoadImage("logo2", "images/logo2.png")
+th_image.LoadImage("ui_bg", "images/menu_bg.png")
 
 NewQuadGroupBatch("stg6bg", "stg6bg", {
 	{0,0,512,256,"sakura"}, {0,256,256,256,"fog"}, {257,257,256,256,"circle"}

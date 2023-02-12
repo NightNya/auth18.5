@@ -127,14 +127,14 @@ FRONT_HEIGHT = 536
 --require "lib.thes"
 
 Class = require "lib.middleclass"
-require "lib.THdata"
-require "lib.THtask"
-require "lib.THobject"
-require "lib.THdebug"
-require "lib.THimage"
-require "lib.THui"
-require "lib.THtext"
-require "lib.THgame"
+th_data = require "lib.THdata"
+task = require "lib.THtask"
+th_object = require "lib.THobject"
+th_debug = require "lib.THdebug"
+th_image = require "lib.THimage"
+th_ui = require "lib.THui"
+th_text =  require "lib.THtext"
+th = require "lib.THgame"
 --[[require "lib.THquad_group"
 require "lib.THaudio"
 require "lib.THui"
@@ -145,8 +145,8 @@ require "lib.THitem"]]
 
 
 function love.load()
-	LoadFont("debug", "assets/font/arial.ttf", 15) -- debug需要
-	LoadImage("loading", "assets/ui/loading.png")
+	th_text.LoadFont("debug", "assets/font/arial.ttf", 15) -- debug需要
+	th_image.LoadImage("loading", "assets/ui/loading.png")
 	th.ResetRandomSeed() -- 重置随机数种子
 	if gameMode == GAME_MODE_DEBUG then
 		New(th_debug) -- debug模式, 需要提前加载THobject, THtask, THtext, THdebug

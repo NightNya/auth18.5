@@ -1,5 +1,5 @@
 ---@class th_debug : class
-th_debug = Class("th_debug")
+local th_debug = Class("th_debug")
 
 local debugobj = nil
 
@@ -83,3 +83,5 @@ function therror(text)
 		table.insert(debugobj.texts, 1, {{1,0,0,1}, "Error: " .. tostring(text)})
 	end
 end
+
+return th_debug

@@ -1,5 +1,6 @@
+local th_data = {}
 local error
-function CheckPlayerData()
+function th_data.CheckPlayerData()
 	love.filesystem.createDirectory("save")
 	love.filesystem.createDirectory("replay")
 	love.filesystem.createDirectory("snapshot")
@@ -12,3 +13,5 @@ function CheckPlayerData()
 		thlog("finished")
 	end
 end
+
+return th_data

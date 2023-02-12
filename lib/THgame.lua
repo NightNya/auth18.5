@@ -1,5 +1,5 @@
 ---禁止实例
-th = {}
+local th = {}
 
 --stage，难度，符卡，boss等名称均使用整数类型
 --所有函数不提供实现，仅用于定义
@@ -215,3 +215,5 @@ end
 function th.CompletedSpellCard()
     playerAction.spellCard = nil
 end
+
+return th

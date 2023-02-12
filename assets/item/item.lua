@@ -1,4 +1,4 @@
-LoadImage("item", "assets/item/item.png")
+th_image.LoadImage("item", "assets/item/item.png")
 NewQuadGroupBatch("item", "item", {
 	{0,0,32,32,"power_big"}, {32,0,32,32,"lives"}, {64,0,32,32,"lives_big"},
 	{96,0,32,32,"bomb"}, {128,0,32,32,"bomb_big"}, {160,0,32,32,"full"},

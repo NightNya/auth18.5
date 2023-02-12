@@ -1,7 +1,7 @@
 ---禁止实例
 ----@class task
 --task = Class("task")
-task = {}
+local task = {}
 
 function task.getTaskQueueLeng()
 	local l = 0
@@ -237,3 +237,5 @@ function task:_moveToEx(x, y, t, mode, isUI)
 		end
 	end
 end
+
+return task

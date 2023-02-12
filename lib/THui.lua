@@ -1,6 +1,6 @@
 ---`th_ui` 类和继承自该类的类的坐标 (`self.x self.y`) 是不能使用的，必须使用偏移 (`self.ofx self.ofy`)
 ---@class th_ui : th_object
-th_ui = Class("th_ui", th_object)
+local th_ui = Class("th_ui", th_object)
 
 UI_ALIGN_CORNER_LEFT_TOP = 1
 UI_ALIGN_CORNER_RIGHT_TOP = 2
@@ -61,3 +61,5 @@ function th_ui:frame(dt)
 		self.y = SCREEN_ORIGIN_HEIGHT
 	end
 end
+
+return th_ui

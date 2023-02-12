@@ -1,5 +1,5 @@
 ---@class th_text : th_ui
-th_text = Class("th_text", th_ui)
+local th_text = Class("th_text", th_ui)
 
 TEXT_ALIGN_CENTER = "center"
 TEXT_ALIGN_JUSTIFY = "justify"
@@ -41,7 +41,7 @@ end
 ---@param hinting? "light"|"mono"|"none"|"normal"
 ---@param dpiscale? number
 ---@overload fun(name:string, path:string)
-function LoadFont(name, path, size, hinting, dpiscale)
+function th_text.LoadFont(name, path, size, hinting, dpiscale)
 	if size then
 		font[name] = love.graphics.newFont(path, size, hinting, dpiscale)
 	else
@@ -49,3 +49,5 @@ function LoadFont(name, path, size, hinting, dpiscale)
 	end
 	love.graphics.newFont()
 end
+
+return th_text

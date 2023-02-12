@@ -1,5 +1,5 @@
 ---@class th_object : class
-th_object = Class("th_object")
+local th_object = Class("th_object")
 
 ---comment
 ---@param cb_new? function
@@ -261,3 +261,5 @@ function th_object:frame(dt)
 		end
 	end
 end
+
+return th_object
