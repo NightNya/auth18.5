@@ -127,6 +127,7 @@ FRONT_HEIGHT = 536
 --require "lib.thes"
 
 Class = require "lib.middleclass"
+object = require "lib.object"
 th_data = require "lib.THdata"
 task = require "lib.THtask"
 th_object = require "lib.THobject"
@@ -151,10 +152,10 @@ function love.load()
 	if gameMode == GAME_MODE_DEBUG then
 		New(th_debug) -- debug模式, 需要提前加载THobject, THtask, THtext, THdebug
 	end
-	New(th_object,function (self) -- 开屏加载动画, 需要提前加载THobject, THtask, THimage, THgame, THdata
+	New(th_object, function (self) -- 开屏加载动画, 需要提前加载THobject, THtask, THimage, THgame, THdata
 		self._a = 0
 		self.image = "loading"
-		New(th_object,function ()
+		task.New(function ()
 			--[[task._wait(40)
 			for i = 0, 1, 1/100 do
 				self._a = i
@@ -176,7 +177,7 @@ function love.load()
 				coroutine.yield()
 			end]]
 			Main()
-			--self:Delete()
+			self:Delete()
 		end)
 	end)
 	--require "assets.thmian"

@@ -60,7 +60,7 @@ end
 function th_debug:frame()
 	UpdateValue(1, "FPS", love.timer.getFPS())
 	UpdateValue(2, "Time", string.format("%.2f", love.timer.getTime()))
-	UpdateValue(3, "Objects", th_object.getObjectsNumber())
+	UpdateValue(3, "Objects", object.getObjectsNumber())
 	UpdateValue(4, "Tasks", #taskQueue)
 	UpdateValue(5, "Player Action - Power", playerAction.power)
 end

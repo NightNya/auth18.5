@@ -1,40 +1,12 @@
----@class th_object : class
-local th_object = Class("th_object")
+---@class th_object : object
+local th_object = Class("th_object", object)
 
 ---comment
 ---@param cb_new? function
 ---@param cb_kill? function
 ---@param cb_delete? function
 function th_object:initialize(cb_new, cb_kill, cb_delete)
-
-	--- 是否使用（只读）
-	--- @type boolean
-	self.isUsing = true
-
-	--- 是否启用 `self:frame()` 回调
-	--- @type boolean
-	self.isActive = true
-
-	--- 是否启用 `self:render()` 回调
-	--- @type boolean
-	self.isRender = true
-
-	--- 颜色 R（0 ~ 1 之间）
-	--- @type number
-	self._r = 1
-
-	--- 颜色 G（0 ~ 1 之间）
-	--- @type number
-	self._g = 1
-
-	--- 颜色 B（0 ~ 1 之间）
-	--- @type number
-	self._b = 1
-
-	--- 颜色 A（0 ~ 1 之间）
-	--- @type number
-	self._a = 1
-
+	object:initialize()
 	--- y轴坐标，在屏幕内可见的最大值为 `SCREEN_ORIGIN_WIDTH` 的值
 	--- @type number
 	self.x = 0.
@@ -74,10 +46,6 @@ function th_object:initialize(cb_new, cb_kill, cb_delete)
 	--- 切片组的帧（在 `quadGroup[self.quadGeoup]` 中的名字）
 	--- @type string|integer
 	self.quadGroupFrame = 1
-
-	--- 图层
-	--- @type integer
-	self.layer = LAYER_DEBUG
 
 	--- 给 `self.isRotToV` 用的速度
 	--- @type number
@@ -131,104 +99,6 @@ function th_object:initialize(cb_new, cb_kill, cb_delete)
 	self.cb_new = cb_new or function()end
 	self.cb_kill = cb_kill or function()end
 	self.cb_delete = cb_delete or function()end
-end
-
-function th_object.getObjectPoolLeng()
-	local l = 0
-	for k, v in pairs(objectPool) do
-		l=l+1
-	end
-	return l
-end
-
-function th_object.getObjectsNumber()
-	local t = 0
-	for k, v in pairs(objectPool) do
-		if v.isUsing then
-			t=t+1
-		end
-	end
-	return t
-end
-
----实例化类到对象池
----@param class class 类
----@param ... any 参数
----@return integer key 实例所在的键
----@overload fun(class: class)
-function New(class, ...)
-	if class ~= task then
-		for k, v in pairs(objectPool) do
-			if v.isUsing == false then
-				objectPool[k] = class:new(...)
-				last = objectPool[k]
-				if class == th_player then
-					table.insert(player, last)
-				end
-				if last.cb_new then
-					last:cb_new()
-				end
-				-- RDO: Replace Deleted Object
-				thlog("(RDO) New Object, Key: " .. tostring(k))
-				return k
-			end
-		end
-		table.insert(objectPool, class:new(...))
-		last = objectPool[th_object.getObjectPoolLeng()]
-		if class == th_player then
-			table.insert(player, last)
-		end
-		if last.cb_new then
-			last:cb_new()
-		end
-		thlog("New Object, Key: " .. tostring(th_object.getObjectPoolLeng()))
-		return th_object.getObjectPoolLeng()
-	else
-		therror("New - 实例化了错误的类")
-	end
-end
----删除对象
-function th_object:Delete()
-	if self.cb_delete then
-		self:cb_delete()
-	end
-	self.isUsing = false
-end
-
----杀死对象
-function th_object:Kill()
-	if self.cb_kill then
-		self:cb_kill()
-	end
-	self:Delete()
-end
-
----检测对象是否在指定矩形空间里（如果坐标相等则为 `true` ）
----@param object th_object
----@param ox number 原点x
----@param oy number 原点y
----@param width number 矩形宽
----@param height number 矩形高
----@return boolean
-function BoxCheck(object, ox, oy, width, height)
-	if object.x >= ox and object.x <= ox + width and object.y >= oy and object.y <= oy + height then
-		return true
-	else
-		return false
-	end
-end
-
----检测对象是否在指定圆形空间里（如果距离相等则为 `true` ）
----@param object th_object
----@param ox number 原点x
----@param oy number 原点y
----@param rad number 半径
-function CircleCheck(object, ox, oy, rad)
-	if math.sqrt((ox - object.x) ^ 2 + (oy - object.y) ^ 2) <= rad then
-		return true
-	else
-		return false
-	end
 end
 
 function th_object:render(srw, srh)
