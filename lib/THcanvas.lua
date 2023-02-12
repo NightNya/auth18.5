@@ -1,5 +1,5 @@
 ---@class th_canvas : th_object
-th_canvas = Class("th_canvas", th_object)
+local th_canvas = Class("th_canvas", th_object)
 
 ---@param canw number 画布长
 ---@param canh number 画布高
@@ -75,3 +75,5 @@ end
 function th_canvas:render(srw, srh)
 	love.graphics.draw(self.canvas, self.x*srw, self.y*srh, self.rot, self.sx*srw, self.sy*srh, self.ox, self.oy, self.kx*srw, self.ky*srh)
 end
+
+return th_canvas

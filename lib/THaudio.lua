@@ -1,5 +1,5 @@
 ---@class th_audio : class
-th_audio = Class("th_audio")
+local th_audio = Class("th_audio")
 
 ---@alias th_audio.SourceType "queue"|"static"|"stream"
 
@@ -20,7 +20,7 @@ end
 ---@param position_x? number 声音的位置 x
 ---@param position_y? number 声音的位置 y
 ---@param position_z? number 声音的位置 z
-function LoadSound(name, path, position_x, position_y, position_z)
+function th_audio.LoadSound(name, path, position_x, position_y, position_z)
     sound[name] = th_audio:new(path, "static", position_x, position_y, position_z)
 end
 
@@ -29,30 +29,32 @@ end
 ---@param position_x? number 声音的位置 x
 ---@param position_y? number 声音的位置 y
 ---@param position_z? number 声音的位置 z
-function LoadMusic(name, path, position_x, position_y, position_z)
+function th_audio.LoadMusic(name, path, position_x, position_y, position_z)
     music[name] = th_audio:new(path, "stream", position_x, position_y, position_z)
 end
 
-function PlaySound(name)
+function th_audio.PlaySound(name)
     love.audio.play(sound[name].source)
 end
 
-function PlayMusic(name)
+function th_audio.PlayMusic(name)
     love.audio.play(music[name].source)
 end
 
-function PauseSound(name)
+function th_audio.PauseSound(name)
     love.audio.pause(sound[name])
 end
 
-function PauseMusic(name)
+function th_audio.PauseMusic(name)
     love.audio.pause(music[name])
 end
 
-function SetSoundPosition(name, x, y, z)
+function th_audio.SetSoundPosition(name, x, y, z)
     sound[name].source:setPosition(x,y,z)
 end
 
-function SetMusicPosition(name, x, y, z)
+function th_audio.SetMusicPosition(name, x, y, z)
     music[name].source:setPosition(x,y,z)
 end
+
+return th_audio

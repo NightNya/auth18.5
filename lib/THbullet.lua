@@ -1,5 +1,5 @@
 ---@class th_bullet : th_object
-th_bullet = Class("th_bullet", th_object)
+local th_bullet = Class("th_bullet", th_object)
 
 ---@alias th_bullet.type "scale"|"ring"|"circle"|"rice"|"sharp"|"prism"|"square"|"ammo"|"stripedBacteria"|"star"|"ghost"|"bacteria"|"point"
 ---@alias th_bullet.color "black"|"deepRed"|"red"|"purple"|"pink"|"deepBlue"|"blue"|"deepCyan"|"cyan"|"deepGreen"|"green"|"greenish-Yellow"|"deepYellow"|"yellow"|"golden"|"white"
@@ -120,3 +120,5 @@ function th_bullet:frame(dt)
 		end
 	end
 end
+
+return th_bullet

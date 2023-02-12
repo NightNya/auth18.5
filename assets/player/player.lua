@@ -2,36 +2,36 @@ th_image.LoadImage("pl00", "assets/player/reimu/pl00.png")
 th_image.LoadImage("pl00b", "assets/player/reimu/pl00b.png")
 th_image.LoadImage("pslow", "assets/player/eff_sloweffect.png")
 
-NewQuadGroupBatch("pslow", "pslow", {
+th_quadGroup.NewQuadGroupBatch("pslow", "pslow", {
 	{0,0,64,64,1}, {64,0,64,64,2}
 })
 
-NewQuadGroupBatch("pl00_normal", "pl00", {
+th_quadGroup.NewQuadGroupBatch("pl00_normal", "pl00", {
     {0,0,32,48,1}, {32,0,32,48,2}, {64,0,32,48,3}, {96,0,32,48,4},
     {128,0,32,48,5}, {160,0,32,48,6}, {192,0,32,48,7}, {224,0,32,48,8}
 })
 
-NewQuadGroupBatch("pl00_turning-left", "pl00", {
+th_quadGroup.NewQuadGroupBatch("pl00_turning-left", "pl00", {
     {0,48,32,48,1}, {32,48,32,48,2}, {64,48,32,48,3}, {96,48,32,48,4}
 })
 
-NewQuadGroupBatch("pl00_turning-right", "pl00", {
+th_quadGroup.NewQuadGroupBatch("pl00_turning-right", "pl00", {
     {0,96,32,48,1}, {32,96,32,48,2}, {64,96,32,48,3}, {96,96,32,48,4}
 })
 
-NewQuadGroupBatch("pl00_left", "pl00", {
+th_quadGroup.NewQuadGroupBatch("pl00_left", "pl00", {
     {128,48,32,48,1}, {160,48,32,48,2}, {192,48,32,48,3}, {224,48,32,48,4}
 })
 
-NewQuadGroupBatch("pl00_right", "pl00", {
+th_quadGroup.NewQuadGroupBatch("pl00_right", "pl00", {
     {128,96,32,48,1}, {160,96,32,48,2}, {192,96,32,48,3}, {224,96,32,48,4}
 })
 
-NewQuadGroupBatch("pl00_bullet", "pl00", {
+th_quadGroup.NewQuadGroupBatch("pl00_bullet", "pl00", {
 	{192,144,64,16,1}
 })
 
-DefinePlayer("reimu", "pl00_normal", "pl00_turning-left", "pl00_turning-right", "pl00_left", "pl00_right", 3.6, 2,
+th_player.DefinePlayer("reimu", "pl00_normal", "pl00_turning-left", "pl00_turning-right", "pl00_left", "pl00_right", 3.6, 2,
 function(self) -- cb_new
     self.image = "pl00"
 	self.ox = 16

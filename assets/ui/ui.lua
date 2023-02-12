@@ -12,8 +12,8 @@ th_image.LoadImage("title_diffculty", "assets/ui/diffculty.png")
 th_image.LoadImage("game_front", "assets/ui/game_front.png")
 th_image.LoadImage("game_logo", "assets/ui/logo2.png")
 
-NewQuadGroupY("title_option", "title_option", 10)
-NewQuadGroupX("title_diffculty", "title_diffculty", 5)
+th_quadGroup.NewQuadGroupY("title_option", "title_option", 10)
+th_quadGroup.NewQuadGroupX("title_diffculty", "title_diffculty", 5)
 
 ---comment
 ---@param ui_type "title"|"game"|"ending"|"staff"
@@ -111,7 +111,7 @@ function ui.DrawUI(ui_type)
 						else
 							opt = 10
 						end
-						PlaySound("select")
+						th_audio.PlaySound("select")
 						while love.keyboard.isDown("up") and isKeyDown do
 							coroutine.yield()
 						end
@@ -130,7 +130,7 @@ function ui.DrawUI(ui_type)
 						else
 							opt = 1
 						end
-						PlaySound("select")
+						th_audio.PlaySound("select")
 						while love.keyboard.isDown("down") and isKeyDown do
 							coroutine.yield()
 						end
@@ -141,7 +141,7 @@ function ui.DrawUI(ui_type)
 						else
 							opt = 10
 						end
-						PlaySound("cancel")
+						th_audio.PlaySound("cancel")
 						while love.keyboard.isDown("x") and isKeyDown do
 							coroutine.yield()
 						end
@@ -153,7 +153,7 @@ function ui.DrawUI(ui_type)
 						elseif opt == 10 then
 							love.event.quit()
 						end
-						PlaySound("ok")
+						th_audio.PlaySound("ok")
 						task._wait(40)
 					end
 				elseif room == "diffculty" then
@@ -164,7 +164,7 @@ function ui.DrawUI(ui_type)
 							opt = 5
 						end
 						thlog(opt)
-						PlaySound("select")
+						th_audio.PlaySound("select")
 						while love.keyboard.isDown("left") and isKeyDown do
 							coroutine.yield()
 						end
@@ -176,7 +176,7 @@ function ui.DrawUI(ui_type)
 							opt = 1
 						end
 						thlog(opt)
-						PlaySound("select")
+						th_audio.PlaySound("select")
 						while love.keyboard.isDown("right") and isKeyDown do
 							coroutine.yield()
 						end
@@ -184,7 +184,7 @@ function ui.DrawUI(ui_type)
 					if love.keyboard.isDown("x") and isKeyDown then
 						room = "title"
 						opt = 1
-						PlaySound("cancel")
+						th_audio.PlaySound("cancel")
 						while love.keyboard.isDown("x") and isKeyDown do
 							coroutine.yield()
 						end
@@ -514,6 +514,7 @@ function ui.DrawUI(ui_type)
 		end
 	elseif ui_type == "game" then
 		task.New(function ()
+			thlog("w")
 			New(th_ui, function (self) self.image = "game_front" self.layer = LAYER_UI + 1 end)
 			New(th_ui, function (self)
 				self.image = "game_logo"

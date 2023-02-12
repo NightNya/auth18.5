@@ -1,5 +1,5 @@
 ---@class th_player : th_object
-th_player = Class("th_player", th_object)
+local th_player = Class("th_player", th_object)
 
 ---字符串是减号，值是下划线！！！
 ---@alias th_player.state "normal"|"left"|"right"|"turning-left"|"turning-right"
@@ -47,7 +47,7 @@ end
 ---@param cb_dead function （玩家）死亡时的回调（不提供调用）
 ---@param cb_frame? function 帧回调
 ---@param cb_render? function 渲染回调
-function DefinePlayer(name, qgnormal, qgturning_left, qgturning_right, qgleft, qgright, speed, speedslow, cb_new, cb_shot, cb_bomb, cb_slow, cb_dead, cb_frame, cb_render)
+function th_player.DefinePlayer(name, qgnormal, qgturning_left, qgturning_right, qgleft, qgright, speed, speedslow, cb_new, cb_shot, cb_bomb, cb_slow, cb_dead, cb_frame, cb_render)
 	players[name] = {}
 	players[name].quadGroup = {}
 	players[name].quadGroup.normal = qgnormal
@@ -134,3 +134,5 @@ end
 function th_player:render(srw, srh)
 	self:pcb_render(srw, srh)
 end
+
+return th_player

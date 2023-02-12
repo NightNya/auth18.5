@@ -1,3 +1,3 @@
-LoadSound("select", "assets/se/select.wav")
-LoadSound("cancel", "assets/se/cancel.ogg")
-LoadSound("ok", "assets/se/ok.wav")
+th_audio.LoadSound("select", "assets/se/select.wav")
+th_audio.LoadSound("cancel", "assets/se/cancel.ogg")
+th_audio.LoadSound("ok", "assets/se/ok.wav")

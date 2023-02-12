@@ -23,6 +23,8 @@ function th_quadGroup:initialize(qtype, qimage, n)
 	end
 end]]
 
+local th_quadGroup = {}
+
 ---添加切片到 `quad`
 ---@param name string
 ---@param qimage string
@@ -30,7 +32,7 @@ end]]
 ---@param y number
 ---@param width number
 ---@param height number
-function NewQuad(name, qimage, x, y, width, height)
+function th_quadGroup.NewQuad(name, qimage, x, y, width, height)
 	quad[name] = love.graphics.newQuad(x, y, width, height, image[qimage]:getWidth(), image[qimage]:getHeight())
 end
 
@@ -38,7 +40,7 @@ end
 ---@param name string
 ---@param qimage string 在 `image` 中的图像名
 ---@param n integer 数量
-function NewQuadGroupX(name, qimage, n)
+function th_quadGroup.NewQuadGroupX(name, qimage, n)
 	--quadGroup[name] = th_quadGroup:new("x", qimage, n)
 	local tw = image[qimage]:getWidth()
 	local th = image[qimage]:getHeight()
@@ -52,7 +54,7 @@ end
 ---@param name string
 ---@param qimage string 在 `image` 中的图像名
 ---@param n integer 数量
-function NewQuadGroupY(name, qimage, n)
+function th_quadGroup.NewQuadGroupY(name, qimage, n)
 	--quadGroup[name] = th_quadGroup:new("y", qimage, n)
 	quadGroup[name] = {}
 	local tw = image[qimage]:getWidth()
@@ -66,7 +68,7 @@ end
 ---@param name string
 ---@param qimage string 在 `image` 中的图像名
 ---@param t table 切片的位置、大小、名字
-function NewQuadGroupBatch(name, qimage, t)
+function th_quadGroup.NewQuadGroupBatch(name, qimage, t)
 	--quadGroup[name] = th_quadGroup:new("batch", qimage, t)
 	quadGroup[name] = {}
 	local tw = image[qimage]:getWidth()
@@ -75,3 +77,5 @@ function NewQuadGroupBatch(name, qimage, t)
 		quadGroup[name][v[5]] = love.graphics.newQuad(v[1], v[2], v[3], v[4], tw, th)
 	end
 end
+
+return th_quadGroup

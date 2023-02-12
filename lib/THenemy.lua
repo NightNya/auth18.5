@@ -1,5 +1,5 @@
 ---@class th_enemy : th_object
-th_enemy = Class("th_enemy", th_object)
+local th_enemy = Class("th_enemy", th_object)
 
 ---comment
 ---@param cb_new function
@@ -11,3 +11,5 @@ function th_enemy:initialize(cb_new, cb_kill, cb_delete)
 	self.collision = COLLI_CIRCLE
 	self.collisionGroup = COLLI_GROUP_PLAYER_BULLET
 end
+
+return th_enemy

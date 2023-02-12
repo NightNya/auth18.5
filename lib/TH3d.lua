@@ -1,4 +1,4 @@
-th_3d = Class("th_3d")
+local th_3d = Class("th_3d")
 
 function th_3d:initialize(vertexname, texturename, translation, rotation, scale, cb_new, cb_kill, cb_delete)
     self.isUsing = true
@@ -23,3 +23,5 @@ end
 function LoadVertex(name, path)
     vertex[name] = path
 end
+
+return th_3d

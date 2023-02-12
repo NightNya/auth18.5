@@ -154,20 +154,20 @@ function love.load()
 	New(th_object,function (self) -- 开屏加载动画, 需要提前加载THobject, THtask, THimage, THgame, THdata
 		self._a = 0
 		self.image = "loading"
-		task.New(function ()
+		New(th_object,function ()
 			--[[task._wait(40)
 			for i = 0, 1, 1/100 do
 				self._a = i
 				coroutine.yield()
 			end]]
-			require "lib.THquad_group"
-			require "lib.THaudio"
-			require "lib.THbullet"
-			require "lib.THcanvas"
-			require "lib.THplayer"
-			require "lib.THenemy"
-			require "lib.THitem"
-			require "lib.TH3d"
+			th_quadGroup = require "lib.THquad_group"
+			th_audio = require "lib.THaudio"
+			th_bullet = require "lib.THbullet"
+			th_canvas = require "lib.THcanvas"
+			th_player = require "lib.THplayer"
+			th_enemy = require "lib.THenemy"
+			th_item = require "lib.THitem"
+			th_3d = require "lib.TH3d"
 			g3d = require "g3d"
 			require "assets.thmian"
 			--[[task._wait(150)
@@ -176,7 +176,7 @@ function love.load()
 				coroutine.yield()
 			end]]
 			Main()
-			self:Delete()
+			--self:Delete()
 		end)
 	end)
 	--require "assets.thmian"

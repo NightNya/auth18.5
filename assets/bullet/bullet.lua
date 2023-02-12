@@ -2,7 +2,7 @@ th_image.LoadImage("bulletMap-1", "assets/bullet/bullet1.png")
 th_image.LoadImage("bulletMap-2", "assets/bullet/bullet2.png")
 th_image.LoadImage("bulletMap-3", "assets/bullet/bullet3.png")
 th_image.LoadImage("etbreak", "assets/bullet/etbreak.png")
-NewQuadGroupBatch("bulletMap-1", "bulletMap-1", {
+th_quadGroup.NewQuadGroupBatch("bulletMap-1", "bulletMap-1", {
     {224,0,16,16,"scale_black"}, {224,16,16,16,"scale_deepRed"}, {224,32,16,16,"scale_red"},
     {224,48,16,16,"scale_purple"}, {224,64,16,16,"scale_pink"}, {224,80,16,16,"scale_deepBlue"},
     {224,96,16,16,"scale_blue"}, {224,112,16,16,"scale_deepCyan"}, {224,128,16,16,"scale_cyan"},
@@ -87,12 +87,12 @@ NewQuadGroupBatch("bulletMap-1", "bulletMap-1", {
     {17,128,30,32,"fog_cyan"}, {17,160,30,32,"fog_green"}, {17,192,30,32,"fog_yellow"}, {17,224,30,32,"fog_white"}
 })
 
-NewQuadGroupBatch("bulletFog", "bulletMap-1", {
+th_quadGroup.NewQuadGroupBatch("bulletFog", "bulletMap-1", {
     {0,0,64,64,1}, {64,0,64,64,2}, {128,0,64,64,3}, {192,0,64,64,4},
     {0,64,64,64,5}, {64,64,64,64,6}, {128,64,64,64,7}, {192,64,64,64,8}
 })
 
-NewQuadGroupBatch("etbreak", "etbreak", {
+th_quadGroup.NewQuadGroupBatch("etbreak", "etbreak", {
     {0,0,64,64,1}, {64,0,64,64,2}, {128,0,64,64,3}, {192,0,64,64,4},
     {0,64,64,64,5}, {64,64,64,64,6}, {128,64,64,64,7}, {192,64,64,64,8}
 })

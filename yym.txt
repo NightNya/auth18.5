@@ -6,10 +6,10 @@ th_image.LoadImage("pcb", "images/pcb.png")
 th_image.LoadImage("logo2", "images/logo2.png")
 th_image.LoadImage("ui_bg", "images/menu_bg.png")
 
-NewQuadGroupBatch("stg6bg", "stg6bg", {
+th_quadGroup.NewQuadGroupBatchh("stg6bg", "stg6bg", {
 	{0,0,512,256,"sakura"}, {0,256,256,256,"fog"}, {257,257,256,256,"circle"}
 })
-NewQuadGroupBatch("std6txt", "std6txt", {
+th_quadGroup.NewQuadGroupBatchh("std6txt", "std6txt", {
 	{0,0,256,48,"logo"}, {0,128,128,128,"logobg"}, {129,128,128,64,"logo2"},
 	{256,0,256,48,"text"}
 })

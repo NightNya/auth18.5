@@ -1,5 +1,5 @@
 ---@class th_item : th_object
-th_item = Class("th_item", th_object)
+local th_item = Class("th_item", th_object)
 
 ---@alias th_item.type "power"|"point"|"lives"|"bomb"|"full"|"power_big"|"bomb_big"|"lives_big"|"small_point_0"|"small_point_1"|"small_point_2"
 
@@ -88,3 +88,5 @@ function th_item:frame()
 		self:Delete()
 	end
 end
+
+return th_item
