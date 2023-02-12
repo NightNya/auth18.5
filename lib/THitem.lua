@@ -31,6 +31,8 @@ function th_item:initialize(_type, cb_new, cb_kill, cb_delete)
 	self.quadGroup = "item"
 	self.quad = _type
 	self.type = _type
+	self.isCollected = false
+	self.lineCollect = false
 end
 
 ---生成在矩形范围内掉落物，如果 `x == width` `y == height` 或不存在 `width` 与 `height` ，则只在 `x` 与 `y` 坐标上生成
@@ -62,26 +64,26 @@ function th_item.New(_type, num, x, y, width, height)
 end
 
 function th_item:frame()
-	if player[1].y < item.line then
+	if self.isCollected then
 		if th_object.CircleCheck(self, player[1].x, player[1].y, item.delete) then
 			if self.type == "power" then
 				playerAction.power = playerAction.power + 1
 			end
 			self:Kill()
 		else
-			self.x = math.cos(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.lineCollectSpeed + self.x
-			self.y = math.sin(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.lineCollectSpeed + self.y
+			if self.lineCollect then
+				self.x = math.cos(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.lineCollectSpeed + self.x
+				self.y = math.sin(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.lineCollectSpeed + self.y
+			else
+				self.x = math.cos(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.collectSpeed + self.x
+				self.y = math.sin(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.collectSpeed + self.y
+			end
 		end
+	elseif player[1].y < item.line then
+		self.isCollected = true
+		self.lineCollect = true
 	elseif player[1] and th_object.CircleCheck(self, player[1].x, player[1].y, item.collect) then
-		if th_object.CircleCheck(self, player[1].x, player[1].y, item.delete) then
-			if self.type == "power" then
-				playerAction.power = playerAction.power + 1
-			end
-			self:Kill()
-		else
-			self.x = math.cos(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.collectSpeed + self.x
-			self.y = math.sin(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.collectSpeed + self.y
-		end
+		self.isCollected = true
 	elseif self.y < SCREEN_ORIGIN_HEIGHT then
 		self.y = self.y + item.speed
 	else
