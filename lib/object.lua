@@ -39,21 +39,22 @@ function object:initialize(cb_new, cb_kill, cb_delete)
     self.cb_delete = cb_delete or function()end
     self.frame = function()end
     self.render = function()end
-    ---删除对象
-    function object:Delete()
-	    if self.cb_delete then
-	    	self:cb_delete()
-	    end
-	    self.isUsing = false
-    end
+end
 
-    ---杀死对象
-    function object:Kill()
-    	if self.cb_kill then
-	    	self:cb_kill()
-    	end
-    	self:Delete()
+---删除对象
+function object:Delete()
+    if self.cb_delete then
+        self:cb_delete()
     end
+    self.isUsing = false
+end
+
+---杀死对象
+function object:Kill()
+    if self.cb_kill then
+        self:cb_kill()
+    end
+    self:Delete()
 end
 
 function object.getObjectPoolLeng()
