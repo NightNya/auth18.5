@@ -113,14 +113,14 @@ function New(class, ...)
 end
 
 ---检测对象是否在指定矩形空间里（如果坐标相等则为 `true` ）
----@param object th_object
+---@param obj th_object
 ---@param ox number 原点x
 ---@param oy number 原点y
 ---@param width number 矩形宽
 ---@param height number 矩形高
 ---@return boolean
-function BoxCheck(object, ox, oy, width, height)
-	if object.x >= ox and object.x <= ox + width and object.y >= oy and object.y <= oy + height then
+function BoxCheck(obj, ox, oy, width, height)
+	if obj.x >= ox and obj.x <= ox + width and obj.y >= oy and obj.y <= oy + height then
 		return true
 	else
 		return false
@@ -128,12 +128,12 @@ function BoxCheck(object, ox, oy, width, height)
 end
 
 ---检测对象是否在指定圆形空间里（如果距离相等则为 `true` ）
----@param object th_object
+---@param obj th_object
 ---@param ox number 原点x
 ---@param oy number 原点y
 ---@param rad number 半径
-function CircleCheck(object, ox, oy, rad)
-	if math.sqrt((ox - object.x) ^ 2 + (oy - object.y) ^ 2) <= rad then
+function CircleCheck(obj, ox, oy, rad)
+	if math.sqrt((ox - obj.x) ^ 2 + (oy - obj.y) ^ 2) <= rad then
 		return true
 	else
 		return false
