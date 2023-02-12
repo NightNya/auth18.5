@@ -101,6 +101,34 @@ function th_object:initialize(cb_new, cb_kill, cb_delete)
 	self.cb_delete = cb_delete or function()end
 end
 
+---检测对象是否在指定矩形空间里（如果坐标相等则为 `true` ）
+---@param obj th_object
+---@param ox number 原点x
+---@param oy number 原点y
+---@param width number 矩形宽
+---@param height number 矩形高
+---@return boolean
+function th_object.BoxCheck(obj, ox, oy, width, height)
+	if obj.x >= ox and obj.x <= ox + width and obj.y >= oy and obj.y <= oy + height then
+		return true
+	else
+		return false
+	end
+end
+
+---检测对象是否在指定圆形空间里（如果距离相等则为 `true` ）
+---@param obj th_object
+---@param ox number 原点x
+---@param oy number 原点y
+---@param rad number 半径
+function th_object.CircleCheck(obj, ox, oy, rad)
+	if math.sqrt((ox - obj.x) ^ 2 + (oy - obj.y) ^ 2) <= rad then
+		return true
+	else
+		return false
+	end
+end
+
 function th_object:render(srw, srh)
 	love.graphics.setColor(self._r, self._g, self._b, self._a)
 	if self.quad then
@@ -126,7 +154,7 @@ function th_object:frame(dt)
 			self.vx = math.cos(self.rot) * self.v * dt
 			self.vy = math.sin(self.rot) * self.v * dt
 		end
-		if self.bound and not BoxCheck(self, self.boundox, self.boundoy, self.boundwidth, self.boundheight) then
+		if self.bound and not th_object.BoxCheck(self, self.boundox, self.boundoy, self.boundwidth, self.boundheight) then
 			self:Delete()
 		end
 	end

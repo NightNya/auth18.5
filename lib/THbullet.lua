@@ -115,7 +115,7 @@ end
 function th_bullet:frame(dt)
 	th_object.frame(self, dt)
 	if player[1] then
-		if CircleCheck(player[1], self.x, self.y, 7) then
+		if th_object.CircleCheck(player[1], self.x, self.y, 7) then
 			thlog("www")
 		end
 	end

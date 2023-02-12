@@ -63,7 +63,7 @@ end
 
 function th_item:frame()
 	if player[1].y < item.line then
-		if CircleCheck(self, player[1].x, player[1].y, item.delete) then
+		if th_object.CircleCheck(self, player[1].x, player[1].y, item.delete) then
 			if self.type == "power" then
 				playerAction.power = playerAction.power + 1
 			end
@@ -72,8 +72,8 @@ function th_item:frame()
 			self.x = math.cos(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.lineCollectSpeed + self.x
 			self.y = math.sin(math.atan2(player[1].y-self.y, player[1].x-self.x)) * item.lineCollectSpeed + self.y
 		end
-	elseif player[1] and CircleCheck(self, player[1].x, player[1].y, item.collect) then
-		if CircleCheck(self, player[1].x, player[1].y, item.delete) then
+	elseif player[1] and th_object.CircleCheck(self, player[1].x, player[1].y, item.collect) then
+		if th_object.CircleCheck(self, player[1].x, player[1].y, item.delete) then
 			if self.type == "power" then
 				playerAction.power = playerAction.power + 1
 			end
