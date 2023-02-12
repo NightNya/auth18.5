@@ -1,10 +1,11 @@
 ---@class th_item : th_object
 local th_item = Class("th_item", th_object)
 
----@alias th_item.type "power"|"point"|"lives"|"bomb"|"full"|"power_big"|"bomb_big"|"lives_big"|"small_point_0"|"small_point_1"|"small_point_2"
+---@alias th_item.type "power"|"point"|"paradox"|"lives"|"bomb"|"full"|"power_big"|"bomb_big"|"lives_big"|"small_point_0"|"small_point_1"|"small_point_2"
 
 local item = {
 	collect = 20,
+	slowCollect = 30,
 	line = FRONT_Y + 130,
 	speed = 1.5,
 	delete = 10,
@@ -68,6 +69,17 @@ function th_item:frame()
 		if th_object.CircleCheck(self, player[1].x, player[1].y, item.delete) then
 			if self.type == "power" then
 				playerAction.power = playerAction.power + 1
+			elseif self.type == "point" then
+				playerAction.point = playerAction.point + 1
+			elseif self.type == "paradox" then
+				playerAction.paradox = playerAction.paradox + 1
+			elseif self.type == "lives" then
+				playerAction.lives = playerAction.lives + 25
+			elseif self.type == "bomb" then
+				playerAction.bomb = playerAction.bomb + 25
+			elseif self.type == "full" then
+				playerAction.power = playerAction.bomb + 400
+			elseif self.type == "power_big" then
 			end
 			self:Kill()
 		else
@@ -82,7 +94,7 @@ function th_item:frame()
 	elseif player[1].y < item.line then
 		self.isCollected = true
 		self.lineCollect = true
-	elseif player[1] and th_object.CircleCheck(self, player[1].x, player[1].y, item.collect) then
+	elseif player[1] and th_object.CircleCheck(self, player[1].x, player[1].y, item.collect) or playerAction.isSlow and th_object.CircleCheck(self, player[1].x, player[1].y, item.slowCollect) then
 		self.isCollected = true
 	elseif self.y < SCREEN_ORIGIN_HEIGHT then
 		self.y = self.y + item.speed
